@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator 1.0.1 by tumba25 (phpBB version) at phpbbmodders.net"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[SVN management]]></title>
+		<description lang="en"><![CDATA[I you constantly modify your forum or if there are more than on person messing with your forum codes. Then you really need some version control system.
+This MOD adds a SVN (subversion) module to the ACP so you can use a external svn repo to update your forum files.
+You need a external SVN host for the files and SVN (subversion) on the server. This is only tested on Linux but should work on windows to except from the file permissions.
+
+MAKE SURE TO READ README.md before installing this MOD.]]></description>
+		<author-notes lang="en"><![CDATA[MAKE SURE TO READ README.md before installing this MOD.
+
+None of the file edits are actually necessary for this to work.
+The .htaccess edit is a safety thing that you should consider.
+The other are just to stop clumsy admins, since you should disable all modules editing your forum files.]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Jari Kanerva]]></realname>
+				<username><![CDATA[tumba25]]></username>
+				<homepage><![CDATA[phpbbmodders.net]]></homepage>
+				<contributions-group>
+					<contributions status="current" position="developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Igor]]></realname>
+				<username><![CDATA[igorw]]></username>
+				<contributions-group>
+					<contributions status="past" from="2008-01-01" to="2010-09-09" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		<mod-version>1.0.0</mod-version>
+		<installation>
+			<level>advanced</level>
+			<time>1200</time>
+			<target-version>3.0.8</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2011-05-11</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Initial release]]></change>
+				</changelog>
+			</entry>
+		</history>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/*.*" to="*.*"/>
+		</copy>
+		<open src=".htaccess">
+			<edit>
+				<find><![CDATA[<Files "config.php">]]></find>
+				<action type="before-add"><![CDATA[<FilesMatch "\.svn">
+   order deny,allow
+   deny from all
+</FilesMatch>
+]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_language.php">
+			<edit>
+				<find><![CDATA[case 'details':]]></find>
+				<action type="after-add"><![CDATA[				trigger_error($user->lang['OPTION_DISABLED_SVN'] . adm_back_link($this->u_action), E_USER_WARNING);]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[case 'delete':]]></find>
+				<action type="after-add"><![CDATA[				trigger_error($user->lang['OPTION_DISABLED_SVN'] . adm_back_link($this->u_action), E_USER_WARNING);]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_styles.php">
+			<edit>
+				<find><![CDATA[case 'edit':]]></find>
+				<action type="after-add"><![CDATA[				trigger_error($user->lang['OPTION_DISABLED_SVN'] . adm_back_link($this->u_action), E_USER_WARNING);]]></action>
+			</edit>
+		</open>
+		<open src="language/en/acp/common.php">
+			<edit>
+				<find><![CDATA[?>]]></find>
+				<action type="before-add"><![CDATA[// SVN error message 
+$lang = array_merge($lang, array(
+	'OPTION_DISABLED_SVN' => 'This option is disabled, use SVN instead.',
+));]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_svn.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[Remember to delete the install file when done.
+And MAKE SURE TO READ README.md before installing this MOD.
+And enjoy.]]></diy-instructions>
+	</action-group>
+</mod>
