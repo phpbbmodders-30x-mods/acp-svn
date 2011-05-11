@@ -1,0 +1,7 @@
+Use a SVN repo to host your forum files and update your forum from that repo.
+
+No direct editing, never overwrite each others changes. You will always have the option to revert the changes and go back to a earlier version of your files.
+
+Never run your forum directly from a SVN repo, create a user with read-only access for the forum and update from ACP.
+
+Assuming you have a working knowledge of SVN and how to set file permissions on your server, then this is a piece of cake.
