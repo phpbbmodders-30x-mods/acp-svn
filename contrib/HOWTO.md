@@ -45,6 +45,6 @@ These two makes the files and directories only accessible by the web server.
 17. From now on all edits and other file changes to your forum should be done using the SVN repo.
 
 18. You should now be able to access your forum with your browser. Go to http://yourdomain/phpBB3/install_svn.php. Remember to delete that file when done (using SVN).
-You should have a new permission "Can manage SVN" that you can give groups or users. You can find "Manage SVN" in the system tab.
+You should have a new permission "Can manage SVN" that you can give groups or users. You can find "Manage SVN" in ACP under the system tab.
 
 19. Enjoy
