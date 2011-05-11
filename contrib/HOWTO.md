@@ -1,4 +1,4 @@
-This HOWTO assumes that you have a working knowledge of SVN. It also assumes that your server runs *nix.
+This HOWTO assumes that you have a working knowledge of SVN. It also assumes that your server runs *nix and has svn (subversion) installed.
 
 1. First create a SVN repo. I usually do not use the default directories at all ("trunk", "tags" and "branches") when the repo is only for a forum or website. But this howto is easy to adapt if you want to use them. Or if you want to run your forum from a sub-directory in the repo having for example a stable (site) and a development branch to work on.
 
