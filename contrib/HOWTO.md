@@ -24,28 +24,23 @@ This is only tested on Linux but except from the file permissions it should work
 11. Run "svn checkout --username THE_FORUM_USER --password THE_FORUMS_PASS https://url/and/path/to/the/repo". By using the forums username and password you make sure that they work.
 
 12. The ignored directories and files does not exist in the repo so you will need to create them.
-
 		cd your_forum_dir
 		mkdir cache files store images/avatars/upload
 
 13. You need to create a config.php. If you already had a working forum you can copy that file and add the edits for this MOD using nano or the favorite text editor you have installed on your server (I personally prefer jed). If you don't have a working forum then you can open your local copy of config.php and copy the contents. If you are to install a new forum, then you just leave a empty config.php and phpBB will do the rest for you. You will also need to create includes/subversion/config_svn.php, you can use the copy in the MOD to see how to edit it.
 
 14. You need to make the web server the owner of all files and directories, the web server should also be the only one allowed to write to them. You might need sudo to do these steps. Also change the name and group of the web server if they are not www-data
-
 		chown -R www-data:www-data ./
 
 	These two makes the files and directories only accessible by the web server.
-
 		find ./ -type d -exec chmod 700 '{}' \;
 		find ./ -type f -exec chmod 600 '{}' \;
 
 15. Now make sure nobody by accident commit and overwrite your config files
-
 		chmod 400 config.php
 		chmod 400 includes/subversion/config_svn.php
 
 16. Go up to the parent and make sure the forum directory is also only accessible by the web server. Change phpBB3 to the actual name.
-
 		cd ..
 		chown www-data:www-data phpBB3
 		chmod 700 phpBB3
