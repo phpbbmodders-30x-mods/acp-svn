@@ -55,6 +55,10 @@ $lang = array_merge($lang, array(
 	'SVN_MODE_UPDATE'					=> 'Update',
 
 	'VERBOSE'	=> 'Verbose',
+
+	// Installation.
+	'ACP_SVN_MANAGE' => 'Manage SVN',
+	'INSTALL_SVN' => 'Install SVN management',
 ));
 
 ?>
