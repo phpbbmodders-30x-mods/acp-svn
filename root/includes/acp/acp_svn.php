@@ -271,7 +271,7 @@ class acp_svn
 			'U_ACTION'			=> $this->u_action,
 
 			// revision of installation
-			'SVN_REVISION'		=> $config['svn_revision'],
+			'SVN_REVISION'		=> (!empty($config['svn_revision'])) ? $config['svn_revision'] : '',
 
 			'S_SUBMIT'			=> $submit,
 			'S_HIDDEN_FIELDS'	=> sizeof($s_hidden_fields) ? build_hidden_fields($s_hidden_fields) : '',

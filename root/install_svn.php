@@ -61,9 +61,9 @@ $versions = array(
 		 // Add module.
 		'module_add'	=> array(
             array('acp', 'ACP_GENERAL_TASKS', array(
-					'module_basename'	=> 'acp_svn',
+					'module_basename'	=> 'svn',
 					'module_langname'	=> 'ACP_SVN_MANAGE',
-					'module_mode'		=> 'acp_svn',
+					'module_mode'		=> 'main',
 					'module_auth'		=> 'acl_a_manage_svn',
 				),
 			),
