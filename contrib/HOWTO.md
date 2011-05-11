@@ -24,8 +24,8 @@ This HOWTO assumes that you have a working knowledge of SVN. It also assumes tha
 
 12. The ignored directories and files does not exist in the repo so you will need to create them.
 
-	cd your_forum_dir
-	mkdir cache files store images/avatars/upload
+		cd your_forum_dir
+		mkdir cache files store images/avatars/upload
 
 13. You need to create a config.php. If you already had a working forum you can copy that file and add the edits for this MOD using nano or the favorite text editor you have installed on your server (I personally prefer jed). If you don't have a working forum then you can open your local copy of config.php and copy the contents. If you are to install a new forum, then you just leave a empty config.php and phpBB will do the rest for you. After install you need to add the svn credentials to config.php to be able to update the forum through SVN.
 
