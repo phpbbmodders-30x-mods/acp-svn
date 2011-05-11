@@ -7,10 +7,9 @@ This is only tested on Linux but except from the file permissions it should work
 
 3. Checkout the repo to you local computer, preferably to a place accessible with your local web server so you can test your changes before committing them.
 
-4. Copy all forum files to your local repo. Don't add them yet, only copy them. Don't forget the files contained in this MOD, and the file edits if you choose to do them. The only file edit that is necessary is the one in includes/subversion/config_svn.php, but you can't do that through SVN.
+4. Copy all forum files to your local repo. Don't add them yet, only copy them. Don't forget the files contained in this MOD, and the file edits if you choose to do them. No file edits are necessary but you really should consider the .htaccess edit.
 
-5. Set cache/, files/, avatars/upload/, store/, config.php and includes/subversion/config_svn.php to be ignored. You don't want your local test cache or files to be uploaded to the server. Your config files are likely not identical, and if there are more than one developer messing with the forum files you can be sure their config files are not identical.
-	It might be wise to also ignore includes/subversion/config_svn.php
+5. Set cache/, files/, images/avatars/upload/, store/, config.php and includes/subversion/config_svn.php to be ignored. You don't want your local test cache or files to be uploaded to the server. Your config files are likely not identical, and if there are more than one developer messing with the forum files you can be sure their config files are not identical.
 
 6. If you have any other files that needs to be different locally from them on the server, set them to be ignored too.
 
@@ -29,11 +28,11 @@ This is only tested on Linux but except from the file permissions it should work
 		cd your_forum_dir
 		mkdir cache files store images/avatars/upload
 
-13. You need to create a config.php. If you already had a working forum you can copy that file and add the edits for this MOD using nano or the favorite text editor you have installed on your server (I personally prefer jed). If you don't have a working forum then you can open your local copy of config.php and copy the contents. If you are to install a new forum, then you just leave a empty config.php and phpBB will do the rest for you.
+13. You need to create a config.php. If you already had a working forum you can copy that file and add the edits for this MOD using nano or the favorite text editor you have installed on your server (I personally prefer jed). If you don't have a working forum then you can open your local copy of config.php and copy the contents. If you are to install a new forum, then you just leave a empty config.php and phpBB will do the rest for you. You will also need to create includes/subversion/config_svn.php, you can use the copy in the MOD to see how to edit it.
 
 14. You need to make the web server the owner of all files and directories, the web server should also be the only one allowed to write to them. You might need sudo to do these steps. Also change the name and group of the web server if they are not www-data
 
-		chown -R www-data:www-data ./*
+		chown -R www-data:www-data ./
 
 	These two makes the files and directories only accessible by the web server.
 
