@@ -33,7 +33,7 @@ This HOWTO assumes that you have a working knowledge of SVN. It also assumes tha
 
 		chown -R www-data:www-data ./*
 
-These two makes the files and directories only accessible by the web server.
+	These two makes the files and directories only accessible by the web server.
 
 		find ./ -type d -exec chmod 700 '{}' \;
 		find ./ -type f -exec chmod 600 '{}' \;
