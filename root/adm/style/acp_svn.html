@@ -1,0 +1,163 @@
+<!-- INCLUDE overall_header.html -->
+
+<style type="text/css">
+/* <![CDATA[ */
+.add {
+	color: #228822;
+}
+.del {
+	color: #BC2A4D;
+}
+.index {
+	color: #A3A7AD;
+}
+.svn_result {
+	font-size: 9pt;
+}
+/* thanks for fixing this midnight phoenix */
+.svn_result pre {
+	max-height: 500px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+/* ]]> */
+</style>
+
+<a name="maincontent"></a>
+
+<h1>{L_SVN_MANAGEMENT}</h1>
+
+<p>{L_SVN_MANAGEMENT_EXPLAIN}</p>
+
+<!-- IF SVN_REVISION -->
+	<p><strong>{L_SVN_CURRENT_REVISION}: {SVN_REVISION}</strong></p>
+<!-- ENDIF -->
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF PREVIEW -->
+
+	<form method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>{L_PREVIEW_CHANGES}</legend>
+		<div class="source svn_result"><pre>{PREVIEW}</pre></div>
+		<p class="submit-buttons">
+			{S_HIDDEN_FIELDS}{S_FORM_TOKEN}
+			<input class="button2" type="submit" id="cancel" name="cancel" value="{L_CANCEL}" />
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_UPDATE}" />
+		</p>
+	</fieldset>
+
+	</form>
+<!-- ELSE -->
+	<script type="text/javascript">
+	// <![CDATA[
+
+	var actions_verbose	= new Array('status', 'list', 'proplist', 'log');
+	var actions_purge	= new Array('update');
+	var actions_preview	= new Array('update');
+	var actions_limit	= new Array('log');
+
+	var action_id		= 'action';
+	var verbose_block	= 'verbose_block';
+	var purge_block		= 'purge_block';
+	var preview_block	= 'preview_block';
+	var limit_block		= 'limit_block';
+
+	/**
+	 * works like php's in_array function
+	 */
+	function in_array(value, ary)
+	{
+		for (var i = 0; i < ary.length; i++)
+		{
+			if (ary[i] == value)
+			{
+				return 1;
+			}
+		}
+
+		return 0;
+	}
+
+	/**
+	 * update the visibility status of the extra items
+	 */
+	function toggle_extra_display()
+	{
+		document.getElementById(verbose_block).style.display = (!in_array(document.getElementById(action_id).value, actions_verbose)) ? 'none' : 'block';
+		document.getElementById(purge_block).style.display = (!in_array(document.getElementById(action_id).value, actions_purge)) ? 'none' : 'block';
+		document.getElementById(preview_block).style.display = (!in_array(document.getElementById(action_id).value, actions_preview)) ? 'none' : 'block';
+		document.getElementById(limit_block).style.display = (!in_array(document.getElementById(action_id).value, actions_limit)) ? 'none' : 'block';
+	}
+
+	/**
+	 * also do this on page load
+	 */
+	window.onload = function()
+	{
+		toggle_extra_display();
+	}
+
+	// ]]>
+	</script>
+
+	<form method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>{L_OPTIONS}</legend>
+	<dl>
+		<dt><label for="revision">{L_REVISION}:</label><br /><span>{L_REVISION_EXPLAIN}</span></dt>
+		<dd><input name="revision" type="text" class="text small" id="revision" value="{REVISION}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="action">{L_ACTION}:</label></dt>
+		<dd><select name="action" id="action" onchange="toggle_extra_display();">{ACTION_SELECT}</select></dd>
+	</dl>
+	<dl id="verbose_block">
+		<dt><label for="verbose">{L_VERBOSE}:</label></dt>
+		<dd><input name="verbose" type="checkbox" id="verbose" class="radio" value="1"<!-- IF S_VERBOSE --> checked="checked"<!-- ENDIF --> /></dd>
+	</dl>
+	<dl id="purge_block">
+		<dt><label for="purge_cache">{L_PURGE_CACHE}:</label></dt>
+		<dd><input name="purge_cache" type="checkbox" id="purge_cache" class="radio" value="1"<!-- IF S_PURGE_CACHE --> checked="checked"<!-- ENDIF --> /></dd>
+	</dl>
+	<dl>
+		<dt><label for="refresh_theme">{L_REFRESH_THEME}:</label><br /><span>{L_REFRESH_THEME_EXPLAIN}</span></dt>
+		<dd><input name="refresh_theme" type="checkbox" id="refresh_theme" class="radio" value="1" /></dd>
+	</dl>
+	<dl id="preview_block">
+		<dt><label for="preview">{L_PREVIEW_CHANGES}:</label></dt>
+		<dd><input name="preview" type="checkbox" id="preview" class="radio" value="1"<!-- IF S_PREVIEW --> checked="checked"<!-- ENDIF --> /></dd>
+	</dl>
+	<dl id="limit_block">
+		<dt><label for="limit">{L_LIMIT}:</label></dt>
+		<dd><input name="limit" type="text" class="text small" id="limit" value="{LIMIT}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="ignore_externals">{L_IGNORE_EXTERNALS}:</label></dt>
+		<dd><input name="ignore_externals" type="checkbox" id="ignore_externals" class="radio" value="1"<!-- IF S_IGNORE_EXTERNALS --> checked="checked"<!-- ENDIF --> /></dd>
+	</dl>
+	<p class="submit-buttons">
+		{S_HIDDEN_FIELDS}{S_FORM_TOKEN}
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	</fieldset>
+
+	</form>
+
+	<!-- IF OUTPUT and not PREVIEW -->
+	<fieldset>
+		<legend>{L_OUTPUT}</legend>
+		<div class="source svn_result"><pre>{OUTPUT}</pre></div>
+	</fieldset>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->
