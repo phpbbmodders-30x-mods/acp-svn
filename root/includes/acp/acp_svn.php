@@ -40,7 +40,8 @@ class acp_svn
 			trigger_error('NOT_AUTHORISED');
 		}
 
-		include($phpbb_root_path . 'includes/functions_svn.' . $phpEx);
+		include($phpbb_root_path . 'includes/subversion/functions_svn.' . $phpEx);
+		include($phpbb_root_path . 'includes/subversion/config_svn.' . $phpEx);
 
 		$user->add_lang('mods/svn');
 
@@ -103,8 +104,6 @@ class acp_svn
 
 				throw new Exception('error');
 			}
-
-			global $svn_settings;
 
 			$svn = new svn_commands($svn_settings['local_copy_path'], $svn_settings['local_bin_path'], $svn_settings['local_config_path'], $svn_settings['svn_repository'], $svn_settings['svn_username'], $svn_settings['svn_password']);
 
