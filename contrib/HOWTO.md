@@ -32,6 +32,7 @@ This HOWTO assumes that you have a working knowledge of SVN. It also assumes tha
 14. You need to make the web server the owner of all files and directories, the web server should also be the only one allowed to write to them. You might need sudo to do these steps. Also change the name and group of the web server if they are not www-data
 
 		chown -R www-data:www-data ./*
+
 These two makes the files and directories only accessible by the web server.
 
 		find ./ -type d -exec chmod 700 '{}' \;
