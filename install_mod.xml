@@ -11,8 +11,8 @@
 This MOD adds a SVN (subversion) module to the ACP so you can use a external svn repo to update your forum files.
 You need a external SVN host for the files and SVN (subversion) on the server. This is only tested on Linux but should work on windows to except from the file permissions.
 
-MAKE SURE TO READ README.md before installing this MOD.]]></description>
-		<author-notes lang="en"><![CDATA[MAKE SURE TO READ README.md before installing this MOD.
+MAKE SURE TO READ HOWTO before installing this MOD.]]></description>
+		<author-notes lang="en"><![CDATA[MAKE SURE TO READ HOWTO before installing this MOD.
 
 None of the file edits are actually necessary for this to work.
 The .htaccess edit is a safety thing that you should consider.
@@ -83,7 +83,7 @@ The other are just to stop clumsy admins, since you should disable all modules e
 		<open src="language/en/acp/common.php">
 			<edit>
 				<find><![CDATA[?>]]></find>
-				<action type="before-add"><![CDATA[// SVN error message 
+				<action type="before-add"><![CDATA[// SVN error message
 $lang = array_merge($lang, array(
 	'OPTION_DISABLED_SVN' => 'This option is disabled, use SVN instead.',
 ));]]></action>
@@ -91,7 +91,7 @@ $lang = array_merge($lang, array(
 		</open>
 		<php-installer><![CDATA[install_svn.php]]></php-installer>
 		<diy-instructions lang="en"><![CDATA[Remember to delete the install file when done.
-And MAKE SURE TO READ README.md before installing this MOD.
+And MAKE SURE TO READ HOWTO before installing this MOD.
 And enjoy.]]></diy-instructions>
 	</action-group>
 </mod>
